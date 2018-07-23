@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props, context) {
+    super(props, context);
+    console.log(this.props);
+  }
+  
   render() {
     return (
       <div className="App">
@@ -13,9 +19,17 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <ul>
+          { this.props.categories.map(cat => 
+            <li key={cat.id}>{cat.categoryName}</li>
+          )}
+        </ul>
+
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => state; 
+
+export default connect(mapStateToProps)(App);
