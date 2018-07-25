@@ -1,4 +1,4 @@
-import CategoriesApi from '../../rest/categoriesApi';
+import CategoriesApi from '../../rest/categories.api';
 
 /*
  * action types
@@ -30,7 +30,6 @@ export function loadCategories() {
     return function apiListCategories(dispatch) {
         return categoriesApi.list()
             .then(res => {
-                console.log('apiListCategories', { categories: res.data });
                 dispatch(loadCategoriesSuccess(res.data));
             })
             .catch(error => {
@@ -53,7 +52,6 @@ export function loadCategoriesFail(error) {
         error
     };
 };
-
 
 export function getCategory(error) {
     return {

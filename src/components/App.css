@@ -1,0 +1,11 @@
+.main-container {
+  padding: 10px;
+}
+
+.product-discontinued {
+  text-decoration: line-through;
+}
+
+.category-card-description {
+  height: 4em;
+}

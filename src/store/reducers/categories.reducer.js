@@ -2,7 +2,7 @@ import {
     LIST_CATEGORIES_SUCCESS,
     GET_CATEGORY,
     DELETE_CATEGORY_SUCCESS
-} from '../actions/northwindActions';
+} from '../actions/category.actions';
 
 const categoriesReducer = function categoriesReducer(currentState = [], action) {
     let state = currentState;
