@@ -1,8 +1,6 @@
-class EmployeesService {
+import CollectionService from "./collection.service";
 
-    constructor(models) {
-        this.models = models;
-    }
+class EmployeesService extends CollectionService {
 
 }
 

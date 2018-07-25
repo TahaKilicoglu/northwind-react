@@ -1,11 +1,8 @@
-import React from "react";
+import React from 'react';
+import SalesDashboard from '../employees/SalesDashboard';
 
-export default class Home extends React.Component {
-    render() {
-        return (
-            <div>
-                <h3>Home</h3>
-            </div>
-        );
-    }
+export default () => {
+    return (
+        <SalesDashboard />
+    );
 }

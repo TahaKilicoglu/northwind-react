@@ -4,17 +4,31 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import OrdersService from '../../services/orders.service';
+import EmployeesService from '../../services/employees.service';
 
 class Orders extends Component {
 
     render() {
-        // const params = this.props.match.params;
+        const params = this.props.match.params;
         const ordersService = new OrdersService(this.props.orders);
-        const orders = ordersService.ytd();
-
+        const employeesService = new EmployeesService(this.props.orders);
+        
+        let orders;
+        let subheading = null;
+        if (params.employeeId) {
+            orders = ordersService.byEmployee(params.employeeId);
+            const employee = employeesService.find(params.employeeId);
+            if (employee) {
+                subheading = <h4>{ employee.firstName } { employee.lastName }</h4>
+            }
+        }
+        else {
+            orders = ordersService.ytd();
+        }
         return (
             <div>
                 <h3>Orders</h3>
+                {subheading}
                 <table className="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -23,7 +37,7 @@ class Orders extends Component {
                             <th>Customer</th>
                             <th>Ship To</th>
                             <th>Representative</th>
-                            <th>Ship Via</th>  
+                            <th>Ship Via</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -10,6 +10,11 @@ class OrdersService extends CollectionService {
         return _.orderBy(orders, [ 'orderDate' ], [ 'desc' ]);
     }
 
+    byEmployee(employeeId) {
+        const orders = this.models.filter(m => m.employeeId === Number(employeeId));
+        return orders;
+    }
+
 }
 
 export default OrdersService;
