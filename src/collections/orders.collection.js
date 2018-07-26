@@ -1,10 +1,10 @@
 import { compareDates } from '../helpers/date.helpers';
 
-export const byEmployeeId = function byEmployeeId(employeeId) {
+export const soldBy = function soldBy(employeeId) {
     return (order) => order.employeeId === Number(employeeId);
 }
 
-export const countByEmployeeId = function countByEmployeeId(employeeId) {
+export const countByRepresentative = function countByRepresentative(employeeId) {
     return (order) => order.employeeId === employeeId ? 1 : 0;
 }
 

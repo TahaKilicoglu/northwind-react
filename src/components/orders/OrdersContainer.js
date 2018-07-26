@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { byEmployeeId, ytd, orderByAge } from '../../collections/orders.collection';
+import { soldBy, ytd, orderByAge } from '../../collections/orders.collection';
 import { Orders } from './Orders';
 
 class OrdersContainer extends Component {
@@ -14,7 +14,7 @@ class OrdersContainer extends Component {
         let representative;
         if (params.employeeId) {
             const employeeId = Number(params.employeeId);
-            orders = orders.filter(byEmployeeId(employeeId));
+            orders = orders.filter(soldBy(employeeId));
             representative = this.props.employees.find(emp => emp.id === employeeId);
             if (representative) {
                 subheading = <h4>{ representative.firstName } { representative.lastName }</h4>

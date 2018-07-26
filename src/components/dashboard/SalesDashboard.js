@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { BaseUrl } from '../../rest/apiBase';
 import Sales from "./Sales";
-import { byEmployeeId } from "../../collections/orders.collection";
+import { soldBy } from "../../collections/orders.collection";
 import { orderByName } from "../../collections/employees.collection";
 
 class SalesDashboard extends Component {
@@ -34,7 +34,7 @@ class SalesDashboard extends Component {
                   <h4 className="card-title">{`${emp.firstName} ${emp.lastName}`}</h4>
                   <div className="card-text">
                     <h5>{emp.title}</h5>
-                    <Sales employee={emp} orders={orders.filter(byEmployeeId(emp.id))}></Sales>
+                    <Sales employee={emp} orders={orders.filter(soldBy(emp.id))}></Sales>
                   </div>
                   <hr />
                   <Link

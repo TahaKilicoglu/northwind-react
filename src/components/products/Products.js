@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { byCategoryId } from '../../collections/products.collection';
+import { byCategory } from '../../collections/products.collection';
 
 const DefaultMode = 'all';
 const CategoryMode = 'category';
@@ -18,7 +18,7 @@ class Products extends Component {
         if (params.categoryId) {
             mode = CategoryMode;
             const categoryId = Number(params.categoryId);
-            products = products.filter(byCategoryId(categoryId));
+            products = products.filter(byCategory(categoryId));
             const category = categories.find(cat => cat.id === categoryId);
             subheading = category ? <h4>Category: <em>{category.categoryName}</em></h4> : null;
         }

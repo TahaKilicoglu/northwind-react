@@ -32,3 +32,28 @@ This will compile the code, start an http server on port 3000, and start a sessi
 ## Backend
 
 The backend is running as an Azure web app.  It may take a while to spin up when you first use it.
+
+## Functional programming
+
+React encourages the use of functional programming and this is my take on it.  I have tried to avoid putting business logic into the components (beyond simple assumptions such as retrieved an item in a collection using the `id` property).  Ideally, these would be methods attached to the collection itself.
+
+e.g.
+
+````
+orders = this.orders.soldBy(empid)
+````
+or even
+````
+orders = this.orders.soldBy(empid).soldThisYear()
+````
+
+This is not easy to achieve for a JavaScript array.  It could be achieved by mixins but there would need to be done every time an array is filtered or mapped.
+
+I have experimented here with creating files with appropriate functions for each collection.  They will still need to be referenced using the standard ES functions such as filter, map and reduce.
+
+e.g. the above would become
+````
+orders = this.orders.filter(soldby(id)).filter(soldthisyear())
+````
+
+For filtering, the functions called return the actual filtering function.  This is necessary when parameters are passed, e.g. soldBy above, otherwise it is used mainly for consistency.
