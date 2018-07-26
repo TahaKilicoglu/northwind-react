@@ -1,16 +1,15 @@
-import _ from "lodash";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import OrdersService from "../../services/orders.service";
 import Sales from "./Sales";
-import EmployeesService from "../../services/employees.service";
+import { byEmployeeId } from "../../collections/orders.collection";
+import { orderByName } from "../../collections/employees.collection";
 
-class EmployeesDashboard extends Component {
+class SalesDashboard extends Component {
 
   render() {
-    const employees = _.orderBy(this.props.employees, ["lastName", "firstName"]);
-    const ordersService = new OrdersService(this.props.orders);
+    const employees = this.props.employees.sort(orderByName());
+    const orders = this.props.orders;
 
     return (
       <div>
@@ -33,8 +32,9 @@ class EmployeesDashboard extends Component {
                   <h4 className="card-title">{`${emp.firstName} ${emp.lastName}`}</h4>
                   <div className="card-text">
                     <h5>{emp.title}</h5>
-                    <Sales orders={ordersService.byEmployee(emp.id)}></Sales>
+                    <Sales employee={emp} orders={orders.filter(byEmployeeId(emp.id))}></Sales>
                   </div>
+                  <hr />
                   <Link
                     className="btn btn-primary"
                     to={`/employees/${emp.id}/orders`}
@@ -58,4 +58,4 @@ const mapStateToProperties = state => {
   };
 };
 
-export default connect(mapStateToProperties)(EmployeesDashboard);
+export default connect(mapStateToProperties)(SalesDashboard);

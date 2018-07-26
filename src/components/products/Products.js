@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import ProductsService from '../../services/products.service';
-import CategoriesService from '../../services/categories.service';
+import { byCategoryId } from '../../collections/products.collection';
 
 const DefaultMode = 'all';
 const CategoryMode = 'category';
@@ -12,16 +10,16 @@ class Products extends Component {
     render() {
         const params = this.props.match.params;
         let products = this.props.products;
-        const productsService = new ProductsService(products);
-        const categoriesService = new CategoriesService(this.props.categories);
+        const categories = this.props.categories;
+
         let subheading = null;
         let mode = DefaultMode;
 
         if (params.categoryId) {
             mode = CategoryMode;
             const categoryId = Number(params.categoryId);
-            products = productsService.byCategoryId(categoryId);
-            const category =  categoriesService.find(categoryId);
+            products = products.filter(byCategoryId(categoryId));
+            const category = categories.find(cat => cat.id === categoryId);
             subheading = category ? <h4>Category: <em>{category.categoryName}</em></h4> : null;
         }
 

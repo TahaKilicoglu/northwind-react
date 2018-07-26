@@ -1,4 +1,5 @@
 import EmployeesApi from '../../rest/employees.api';
+import { toDate } from '../../helpers/date.helpers';
 
 /*
  * action types
@@ -30,7 +31,14 @@ export function loadEmployees() {
     return function apiListEmployees(dispatch) {
         return employeesApi.list()
             .then(res => {
-                dispatch(loadEmployeesSuccess(res.data));
+                const employees = res.data.map(emp => {
+                    return {
+                        ...emp,
+                        birthDate: toDate(emp.birthDate),
+                        hireDate: toDate(emp.hireDate)
+                    };
+                });
+                dispatch(loadEmployeesSuccess(employees));
             })
             .catch(error => {
                 dispatch(loadEmployeesFail(error));

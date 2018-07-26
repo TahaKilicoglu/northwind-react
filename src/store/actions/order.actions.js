@@ -31,9 +31,23 @@ export function loadOrders() {
     return function apiListOrders(dispatch) {
         return ordersApi.list()
             .then(res => {
-                const orders = res.data.map(o => Object.assign({
-                    orderDate: o.orderDate ? moment(o.orderDate).valueOf() : null,
-                }, o));
+                const orders = res.data.map(o => {
+                    const result = {
+                        ...o,
+                        orderDate: o.orderDate ? moment(o.orderDate).toDate() : null,
+                        requiredDate: o.requiredDate ? moment(o.requiredDate).toDate() : null,
+                        shippedDate: o.shippedDate ? moment(o.shippedDate).toDate() : null,
+                        orderDetails: o.orderDetails.map(
+                            od => {
+                                return {
+                                    ...od,
+                                    value: od.quantity * od.unitPrice * (1.0 - od.discount)
+                                }
+                            }
+                        )
+                    }
+                    return result;
+                });
                 dispatch(loadOrdersSuccess(orders));
             })
             .catch(error => {

@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 
 import Order from './Order';
 import OrderDetails from './OrderDetails';
-import OrdersService from '../../services/orders.service';
+// import OrdersService from '../../services/orders.service';
 
 class OrderContainer extends Component {
 
     render() {
         const params = this.props.match.params;
-        const ordersService = new OrdersService(this.props.orders);
-        const model = ordersService.find(Number(params.id)) || {};
+        const orders = this.props.orders;
+        const model = orders.find(ord => ord.id === Number(params.id));
+        // const ordersService = new OrdersService(this.props.orders);
+        // const model = ordersService.find(Number(params.id)) || {};
 
         return (
             <div>

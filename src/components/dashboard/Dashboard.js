@@ -1,5 +1,5 @@
 import React from 'react';
-import SalesDashboard from '../employees/SalesDashboard';
+import SalesDashboard from './SalesDashboard';
 
 export default () => {
     return (
