@@ -1,3 +1,3 @@
-export const byCategoryId = function byCategoryId(categoryId) {
+export const byCategory = function byCategoryId(categoryId) {
     return (item) => item.categoryId === categoryId;
 }
