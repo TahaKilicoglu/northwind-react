@@ -29,4 +29,6 @@ npm start
 
 This will compile the code, start an http server on port 3000, and start a session in the browser.
 
+## Backend
 
+The backend is running as an Azure web app.  It may take a while to spin up when you first use it.
