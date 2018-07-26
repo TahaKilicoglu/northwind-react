@@ -30,7 +30,6 @@ export function loadCustomers() {
     return function apiListCustomers(dispatch) {
         return customersApi.list()
             .then(res => {
-                console.log('apiListCustomers', { customers: res.data });
                 dispatch(loadCustomersSuccess(res.data));
             })
             .catch(error => {

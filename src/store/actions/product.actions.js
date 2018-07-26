@@ -35,7 +35,6 @@ export function loadProducts() {
         return productsApi.list()
             .then(res => {
                 const products = res.data;
-                console.log('apiListProducts', { products });
                  dispatch(loadProductsSuccess(products));
             })
             .catch(error => {

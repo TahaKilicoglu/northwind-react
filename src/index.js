@@ -12,13 +12,13 @@ import { loadCustomers } from './store/actions/customer.actions';
 import { loadEmployees } from './store/actions/employee.actions';
 
 const store = configureStore();
-store.subscribe(() => { console.log('State', store.getState())});
+// store.subscribe(() => { console.log('State', store.getState())});
 
+store.dispatch(loadOrders());
 store.dispatch(loadEmployees());
-store.dispatch(loadCategories());
 store.dispatch(loadProducts());
 store.dispatch(loadCustomers());
-store.dispatch(loadOrders());
+store.dispatch(loadCategories());
 
 render(
   <Provider store={store}>

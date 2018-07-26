@@ -2,7 +2,6 @@ import React from 'react';
 import { getValueOfOrderDetail, valueOfOrderDetail, orderDetailPriceReducer } from '../../collections/orders.collection';
 
 const OrderDetails = params => {
-    console.log('OrderDetails', params);
     const orderDetails = params.model ? (params.model.orderDetails || []) : [];
     const totalPrice = orderDetails.reduce(orderDetailPriceReducer, 0);
 
