@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+
+import { BaseUrl } from '../../rest/apiBase';
 import Sales from "./Sales";
 import { byEmployeeId } from "../../collections/orders.collection";
 import { orderByName } from "../../collections/employees.collection";
@@ -18,14 +20,14 @@ class SalesDashboard extends Component {
           {employees.map(emp => (
             <div
               key={emp.id}
-              className="col-xs-12 col-sm-6 col-md-3"
+              className="col-xs-12 col-sm-6 col-md-4 col-lg-3"
               style={{ padding: "10px" }}
             >
               <div className="card">
                 <img
                   className="card-img-top"
                   style={{ width: "96px" }}
-                  src={`/api/employees/${emp.id}/image`}
+                  src={`${BaseUrl}/api/employees/${emp.id}/image`}
                   alt={`${emp.firstName} ${emp.lastName}`}
                 />
                 <div className="card-body">

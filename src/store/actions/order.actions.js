@@ -28,11 +28,12 @@ const ordersApi = new OrdersApi();
  * action creators
  */
 export function loadOrders() {
+    console.log('Load Orders');
     return function apiListOrders(dispatch) {
         return ordersApi.list()
             .then(res => {
                 const orders = res.data.map(o => {
-                    const result = {
+                    const order = {
                         ...o,
                         orderDate: o.orderDate ? moment(o.orderDate).toDate() : null,
                         requiredDate: o.requiredDate ? moment(o.requiredDate).toDate() : null,
@@ -45,9 +46,10 @@ export function loadOrders() {
                                 }
                             }
                         )
-                    }
-                    return result;
+                    };
+                    return order;
                 });
+                console.log('Orders', orders.length);
                 dispatch(loadOrdersSuccess(orders));
             })
             .catch(error => {

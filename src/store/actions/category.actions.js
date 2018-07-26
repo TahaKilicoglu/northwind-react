@@ -27,10 +27,13 @@ const categoriesApi = new CategoriesApi();
  * action creators
  */
 export function loadCategories() {
+    console.log('Load Categories');
     return function apiListCategories(dispatch) {
         return categoriesApi.list()
             .then(res => {
-                dispatch(loadCategoriesSuccess(res.data));
+                const categories = res.data;
+                console.log('Categories', categories.length);
+                dispatch(loadCategoriesSuccess(categories));
             })
             .catch(error => {
                 dispatch(loadCategoriesFail(error));

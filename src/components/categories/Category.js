@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { BaseUrl } from '../../rest/apiBase';
+
 const Category = function(params) {
   const cat = params.category;
   return (
@@ -13,7 +15,7 @@ const Category = function(params) {
         <img
           className="card-img-top"
           style={{ width: "172px" }}
-          src={`/api/categories/${cat.id}/image`}
+          src={`${BaseUrl}/api/categories/${cat.id}/image`}
           alt={cat.categoryName}
         />
         <div className="card-body">

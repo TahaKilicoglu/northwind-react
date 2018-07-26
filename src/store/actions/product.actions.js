@@ -32,10 +32,12 @@ const productsApi = new ProductsApi();
  */
 export function loadProducts() {
     return function apiListProducts(dispatch) {
+        console.log('Load Products');
         return productsApi.list()
             .then(res => {
                 const products = res.data;
-                 dispatch(loadProductsSuccess(products));
+                console.log('Products', products.length);
+                dispatch(loadProductsSuccess(products));
             })
             .catch(error => {
                 dispatch(loadProductsFail(error));

@@ -1,10 +1,16 @@
 import axios from 'axios';
 
+export const BaseUrl = "https://northwind-server.azurewebsites.net";
 
 class ApiBase {
 
     constructor(url) {
-        this.url = url;
+        if (url.startsWith('/')) {
+            this.url = BaseUrl + url;
+        } else {
+            this.url = `${BaseUrl}/${url}`;
+        }
+
     }
 
     list(config = null) {

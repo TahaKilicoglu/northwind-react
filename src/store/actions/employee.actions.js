@@ -28,6 +28,7 @@ const employeesApi = new EmployeesApi();
  * action creators
  */
 export function loadEmployees() {
+    console.log('Load Employees');
     return function apiListEmployees(dispatch) {
         return employeesApi.list()
             .then(res => {
@@ -38,6 +39,7 @@ export function loadEmployees() {
                         hireDate: toDate(emp.hireDate)
                     };
                 });
+                console.log('Employees', employees.length);
                 dispatch(loadEmployeesSuccess(employees));
             })
             .catch(error => {

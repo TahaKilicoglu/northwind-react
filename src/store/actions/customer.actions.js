@@ -27,10 +27,13 @@ const customersApi = new CustomersApi();
  * action creators
  */
 export function loadCustomers() {
+        console.log('Load Customers');
     return function apiListCustomers(dispatch) {
         return customersApi.list()
             .then(res => {
-                dispatch(loadCustomersSuccess(res.data));
+                const customers = res.data;
+                console.log('Customers', customers.length);
+                dispatch(loadCustomersSuccess(customers));
             })
             .catch(error => {
                 dispatch(loadCustomersFail(error));
