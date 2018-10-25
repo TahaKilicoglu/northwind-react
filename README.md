@@ -31,7 +31,7 @@ This will compile the code, start an http server on port 3000, and start a sessi
 
 ## Backend
 
-The backend is running as an Azure web app.  It may take a while to spin up when you first use it.
+The backend is running is hosted remotely.  It may take a while to spin up when you first use it.
 
 ## Functional programming
 

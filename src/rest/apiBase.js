@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export const BaseUrl = "https://northwind-server.azurewebsites.net";
+// export const BaseUrl = "https://northwind-server.azurewebsites.net";
+export const BaseUrl = "http://nimrodcomputing-001-site1.gtempurl.com";
+// export const BaseUrl = "http://localhost:63275";
 
 class ApiBase {
 
