@@ -3,6 +3,8 @@ This is a small portfolio program to demonstrate React development.  It takes da
 
 The images used for the system are very low resolution, so they look very grainy.
 
+Note that the first run may take some time as the server instance spins up on demand.
+
 ## Downloading the code
 
 To download the code, use `git`.
